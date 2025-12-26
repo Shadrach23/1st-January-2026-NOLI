@@ -6,8 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import ChristmasAnimations from "@/components/ChristmasAnimations";
-import ChristmasBanner from "@/components/ChristmasBanner";
 import { RequireAuth } from "@/components/RequireAuth";
 import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
@@ -32,10 +30,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <div className="min-h-screen flex flex-col">
-          <ChristmasBanner />
           <Navigation />
-          <main className="flex-grow relative">
-            <ChristmasAnimations />
+          <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<AboutPage />} />

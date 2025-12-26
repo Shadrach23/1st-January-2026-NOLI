@@ -8,20 +8,25 @@ export const churchInfo = {
     "To train, equip and develop Christ in Humanity through prayers, fasting, the Word, and giving of life to the needy.",
   vision: "To be a global ministry that builds Christ in Humanity.",
   commission: "To build the Man Christ in Humanity.",
-  headquarters: "Tarkwa Boobobo (opposite KFC), Western Region, Ghana",
+  headquarters: "Grace Mountain Temple, Western Region, Ghana",
   scope: "Tarkwa & Worldwide",
   branches: ["Accra", "Kumasi", "Takoradi"],
   internationalFellowships: ["London", "Amsterdam", "New York"],
   serviceTimes: [
     {
-      day: "Sunday Celebration Service",
+      day: "Sunday Divine Service",
       time: "7:30 AM – 10:30 AM",
-      description: "Prophetic worship & Word encounter at the Tarkwa headquarters.",
+      description: "Transformative encounters in God's presence at Grace Mountain Temple.",
     },
     {
-      day: "Wednesday Word & Prayer",
+      day: "Midweek Service",
       time: "7:00 PM – 9:00 PM",
-      description: "Midweek training with fasting, prayer, and the Word.",
+      description: "Midweek spiritual empowerment and fellowship.",
+    },
+    {
+      day: "Monthly Fasting & Prayers",
+      time: "7:00 PM – 10:00 PM",
+      description: "Last Friday of Every Month - Powerful prayer and fasting encounter.",
     },
   ],
   address: "Tarkwa Boobobo (Opp. KFC) • Branches: Accra, Kumasi, Takoradi • Intl: London, Amsterdam, New York",
@@ -52,10 +57,10 @@ export const churchInfo = {
     }
   ],
   upcomingEvent: {
-    title: "CROSS OVER 2025 with Pastor Desmond",
-    description: "Prophetic watch-night encounter ushering the church into 2025.",
-    venue: "Newness Cathedral, Tarkwa",
-    date: "31st December, 9:00 PM till dawn",
+    title: "CROSS OVER WITH PASTOR DESMOND",
+    description: "Join us for the CROSS OVER service as we welcome 2026 in God's presence.",
+    venue: "Grace Mountain Temple",
+    date: "31st December, 2025 - 7:00 PM",
   },
   bankDetails: {
     accountName: "Newness of Life Incor. Church",

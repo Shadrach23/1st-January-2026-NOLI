@@ -8,7 +8,7 @@ const Services = () => {
   return (
     <section id="services" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Service Times</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Worship with {churchInfo.shortName} in Tarkwa and across our global family.
@@ -19,8 +19,7 @@ const Services = () => {
           {services.map((service, index) => (
             <Card
               key={service.day}
-              className="hover:shadow-glow transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
-              style={{ animationDelay: `${index * 150}ms` }}
+              className="hover:shadow-glow transition-all duration-300"
             >
               <CardContent className="p-8">
                 <Clock className="h-10 w-10 text-secondary mb-4" />
@@ -34,7 +33,37 @@ const Services = () => {
           ))}
         </div>
 
-        <div className="bg-accent rounded-2xl p-8 md:p-12 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+        <div className="mb-12">
+          <h3 className="text-3xl font-bold text-center text-primary mb-8">Special Events</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="bg-gradient-to-br from-primary/10 to-accent/20 border-2 border-primary/20">
+              <CardContent className="p-8">
+                <div className="text-center mb-4">
+                  <h4 className="text-2xl font-bold text-primary mb-2">CROSS OVER WITH PASTOR DESMOND</h4>
+                  <p className="text-xl font-semibold text-secondary mb-2">31ST DECEMBER, 2025</p>
+                  <p className="text-lg font-medium text-accent mb-4">7PM</p>
+                </div>
+                <p className="text-muted-foreground text-center">
+                  Join us for this powerful CROSS OVER service as we welcome 2026 in God's presence at Grace Mountain Temple.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-gradient-to-br from-secondary/10 to-accent/20 border-2 border-secondary/20">
+              <CardContent className="p-8">
+                <div className="text-center mb-4">
+                  <h4 className="text-2xl font-bold text-primary mb-2">FIRST FRUIT SERVICE</h4>
+                  <p className="text-xl font-semibold text-secondary mb-2">4TH JANUARY, 2026</p>
+                  <p className="text-lg font-medium text-accent mb-4">Special Thanksgiving Service</p>
+                </div>
+                <p className="text-muted-foreground text-center">
+                  Begin the new year with dedication and thanksgiving as we offer our first fruits to the Lord.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        <div className="bg-accent rounded-2xl p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <div className="flex items-start gap-4 mb-6">

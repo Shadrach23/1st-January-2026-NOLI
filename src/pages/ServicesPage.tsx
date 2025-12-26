@@ -1,8 +1,15 @@
 import { Clock, MapPin, Calendar, Users, Music, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { churchInfo } from "@/lib/siteInfo";
 
 const ServicesPage = () => {
+  const handleGetDirections = () => {
+    const address = churchInfo.contact.address;
+    const encodedAddress = encodeURIComponent(address);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`, '_blank');
+  };
+
   const services = [
     {
       name: "First Service",
@@ -109,15 +116,11 @@ const ServicesPage = () => {
                   <div>
                     <h3 className="text-xl font-bold text-primary mb-2">Our Location</h3>
                     <p className="text-muted-foreground">
-                      Grace Community Church
+                      {churchInfo.name}
                       <br />
-                      123 Liberation Road
-                      <br />
-                      East Legon, Accra
-                      <br />
-                      Ghana
+                      {churchInfo.contact.address}
                     </p>
-                    <Button variant="outline" className="mt-4">
+                    <Button variant="outline" className="mt-4" onClick={handleGetDirections}>
                       Get Directions
                     </Button>
                   </div>

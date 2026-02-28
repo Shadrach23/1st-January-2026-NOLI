@@ -26,10 +26,10 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div className="animate-in fade-in slide-in-from-left duration-1000">
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-              About Grace Community
+              About NOLI
             </h2>
             <p className="text-lg text-muted-foreground mb-4">
-              For over 40 years, Grace Community has been a beacon of hope and faith in our
+              For over 40 years, NOLI has been a beacon of hope and faith in our
               community. We're a diverse family of believers committed to loving God and loving
               others.
             </p>

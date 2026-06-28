@@ -1,100 +1,76 @@
 import { useState } from "react";
-import { Play, Volume2 } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Play, ArrowUpRight } from "lucide-react";
+import Section from "@/components/Section";
+import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/Reveal";
 import { churchInfo } from "@/lib/siteInfo";
 
 const VideoGallery = () => {
   const [hoveredVideo, setHoveredVideo] = useState<string | null>(null);
 
-  const handleMouseEnter = (videoId: string) => {
-    setHoveredVideo(videoId);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredVideo(null);
-  };
-
-  const getEmbedUrl = (videoId: string) => {
-    return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}`;
-  };
+  const getEmbedUrl = (videoId: string) =>
+    `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}`;
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Latest Videos</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Experience the power of God's Word and worship from our recent services
-          </p>
-        </div>
+    <Section tone="muted">
+      <SectionHeading
+        eyebrow="Watch & Worship"
+        title="Latest from our services"
+        subtitle="Experience the power of God's Word and worship from our recent gatherings."
+      />
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {churchInfo.videos.map((video, index) => (
-            <Card
-              key={video.id}
-              className="hover:shadow-glow transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
-              style={{ animationDelay: `${index * 150}ms` }}
-              onMouseEnter={() => handleMouseEnter(video.id)}
-              onMouseLeave={handleMouseLeave}
+      <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:grid-cols-2">
+        {churchInfo.videos.map((video, index) => (
+          <Reveal key={video.id} delay={index * 120}>
+            <div
+              className="group h-full overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-500 ease-out-expo hover:-translate-y-1 hover:shadow-lift"
+              onMouseEnter={() => setHoveredVideo(video.id)}
+              onMouseLeave={() => setHoveredVideo(null)}
             >
-              <CardContent className="p-0">
-                <div className="relative aspect-video bg-black rounded-t-lg overflow-hidden">
-                  {hoveredVideo === video.id ? (
-                    <iframe
-                      src={getEmbedUrl(video.id)}
-                      title={video.title}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
+              <div className="relative aspect-video overflow-hidden bg-secondary">
+                {hoveredVideo === video.id ? (
+                  <iframe
+                    src={getEmbedUrl(video.id)}
+                    title={video.title}
+                    className="h-full w-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <>
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
                     />
-                  ) : (
-                    <div className="relative w-full h-full">
-                      <img
-                        src={video.thumbnail}
-                        alt={video.title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
-                          <Play className="h-8 w-8 text-primary-foreground ml-1" />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-2 left-2 bg-black/80 px-2 py-1 rounded flex items-center gap-1">
-                        <Volume2 className="h-3 w-3 text-white" />
-                        <span className="text-white text-xs">Hover to play</span>
-                      </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-secondary/70 via-secondary/10 to-transparent" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-background/90 text-secondary shadow-lift backdrop-blur transition-transform duration-500 ease-out-expo group-hover:scale-110">
+                        <Play className="ml-1 h-7 w-7 fill-current" />
+                      </span>
                     </div>
-                  )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-primary mb-2">{video.title}</h3>
-                  <p className="text-muted-foreground">{video.description}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <p className="text-sm text-muted-foreground mb-4">
-            Hover over videos to preview • Click to watch on YouTube
-          </p>
-          <div className="flex justify-center gap-4">
-            {churchInfo.videos.map((video) => (
-              <a
-                key={video.id}
-                href={`https://www.youtube.com/watch?v=${video.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:text-secondary transition-colors text-sm underline"
-              >
-                Watch on YouTube
-              </a>
-            ))}
-          </div>
-        </div>
+                  </>
+                )}
+              </div>
+              <div className="p-7">
+                <h3 className="font-display text-xl font-semibold text-foreground">{video.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{video.description}</p>
+                <a
+                  href={`https://www.youtube.com/watch?v=${video.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+                >
+                  Watch on YouTube
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 };
 

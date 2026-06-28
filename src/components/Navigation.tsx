@@ -1,116 +1,186 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { churchInfo } from "@/lib/siteInfo";
 import SocialLinks from "@/components/SocialLinks";
+import { cn } from "@/lib/utils";
+// Fingerprinted by Vite so the asset resolves in production.
+import logo from "@/assets/logo.jpg";
+
+// Consolidated from 8 → 6 primary destinations. "Visit" is the newcomer funnel.
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Visit" },
+  { href: "/gallery", label: "Watch" },
+  { href: "/events", label: "Events" },
+  { href: "/give", label: "Give" },
+];
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/services", label: "Services" },
-    { href: "/ministries", label: "Ministries" },
-    { href: "/events", label: "Events" },
-    { href: "/gallery", label: "Gallery" },
-    { href: "/give", label: "Give" },
-    { href: "/contact", label: "Contact" },
-  ];
+  // Close the mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Escape-to-close + body scroll lock while the mobile menu is open
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // On the home route the nav sits over the dark hero until scrolled.
+  const onDarkHero = location.pathname === "/" && !isScrolled;
+
+  const linkBase =
+    "relative font-medium transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm";
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-gold" : "bg-transparent"
-      }`}
+      aria-label="Primary"
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out-expo",
+        isScrolled
+          ? "border-b border-border/60 bg-background/80 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      )}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+      <div className="mx-auto w-full max-w-6xl px-6 md:px-8">
+        <div className="flex h-20 items-center justify-between">
+          {/* Brand */}
           <Link
             to="/"
-            className="flex items-center gap-3 text-primary hover:text-secondary transition-all duration-300 hover:scale-105"
+            className="group flex items-center gap-3 rounded-md transition-opacity duration-300 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
-            <img src="/favicon.ico" alt={churchInfo.name} className="h-10 w-10 rounded-full object-cover shadow-gold" />
-            <div className="flex flex-col">
-              <span className="text-lg md:text-2xl font-black tracking-tight">{churchInfo.name}</span>
-              <span className="text-xs uppercase tracking-[0.2em] text-foreground/60">Christ In Humanity</span>
-            </div>
+            <img
+              src={logo}
+              alt=""
+              aria-hidden="true"
+              className={cn(
+                "h-11 w-11 rounded-full object-cover ring-1 transition-all duration-500 ease-out-expo",
+                onDarkHero ? "ring-background/30" : "ring-border"
+              )}
+            />
+            <span className="flex flex-col leading-tight">
+              <span
+                className={cn(
+                  "font-display text-lg font-semibold tracking-tight md:text-xl",
+                  onDarkHero ? "text-background" : "text-foreground"
+                )}
+              >
+                {churchInfo.shortName}
+              </span>
+              <span
+                className={cn(
+                  "text-[0.65rem] uppercase tracking-[0.2em]",
+                  onDarkHero ? "text-background/70" : "text-muted-foreground"
+                )}
+              >
+                Christ in Humanity
+              </span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop nav */}
+          <div className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.href}
                 to={link.href}
-                className={`text-foreground/70 hover:text-primary transition-all duration-300 font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full ${
-                  location.pathname === link.href ? "text-primary after:w-full" : ""
-                }`}
+                end={link.href === "/"}
+                className={({ isActive }) =>
+                  cn(
+                    linkBase,
+                    onDarkHero
+                      ? "text-background/80 hover:text-background"
+                      : "text-foreground/70 hover:text-primary",
+                    isActive && "text-primary after:w-full"
+                  )
+                }
               >
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
             <SocialLinks />
-            <Button variant="shine" size="lg" className="shadow-gold" onClick={() => window.location.href = "/contact"}>
-              Visit Us
+            <Button
+              variant="shine"
+              onClick={() => navigate("/services")}
+            >
+              Plan Your Visit
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu toggle */}
           <button
-            className="md:hidden p-2 hover:bg-accent rounded-lg transition-all duration-300 hover:scale-110 active:scale-95"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-primary transition-transform rotate-90" />
-            ) : (
-              <Menu className="h-6 w-6 text-primary transition-transform" />
+            type="button"
+            className={cn(
+              "rounded-lg p-2 transition-transform duration-200 hover:bg-accent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:hidden",
+              onDarkHero ? "text-background" : "text-primary"
             )}
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile nav */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border bg-background/98 backdrop-blur-md animate-in slide-in-from-top-4 duration-300">
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link, index) => (
-                <Link
+          <div
+            id="mobile-menu"
+            className="border-t border-border bg-background/98 py-4 backdrop-blur-md animate-in slide-in-from-top-2 duration-200 md:hidden"
+          >
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <NavLink
                   key={link.href}
                   to={link.href}
-                  className={`text-foreground/80 hover:text-primary hover:bg-accent transition-all px-4 py-3 rounded-lg font-medium animate-in slide-in-from-top-2 duration-300 ${
-                    location.pathname === link.href ? "text-primary bg-accent" : ""
-                  }`}
-                  style={{ animationDelay: `${index * 50}ms` }}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  end={link.href === "/"}
+                  className={({ isActive }) =>
+                    cn(
+                      "rounded-lg px-4 py-3 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      isActive
+                        ? "bg-accent text-primary"
+                        : "text-foreground/80 hover:bg-accent hover:text-primary"
+                    )
+                  }
                 >
                   {link.label}
-                </Link>
+                </NavLink>
               ))}
               <div className="px-4 py-3">
                 <SocialLinks />
               </div>
-              <Button 
-                variant="shine" 
-                size="lg" 
-                className="shadow-gold mx-4" 
-                onClick={() => {
-                  window.location.href = "/contact";
-                  setIsMobileMenuOpen(false);
-                }}
+              <Button
+                variant="shine"
+                size="lg"
+                className="mx-4 shadow-gold"
+                onClick={() => navigate("/services")}
               >
-                Visit Us
+                Plan Your Visit
               </Button>
             </div>
           </div>

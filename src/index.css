@@ -10,43 +10,58 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 40 10% 20%;
+    /* Warm ivory canvas + deep espresso ink — gold is a sparing accent, never the workhorse */
+    --background: 38 36% 97%;
+    --foreground: 25 22% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 40 10% 20%;
+    --card-foreground: 25 22% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 40 10% 20%;
+    --popover-foreground: 25 22% 12%;
 
-    --primary: 38 92% 50%;
-    --primary-foreground: 40 10% 20%;
+    /* Refined gold — reserved for accents and a single primary action per view */
+    --primary: 35 78% 45%;
+    --primary-foreground: 38 40% 97%;
 
-    --secondary: 40 95% 55%;
-    --secondary-foreground: 40 10% 20%;
+    /* Deep espresso as the rich secondary */
+    --secondary: 25 28% 16%;
+    --secondary-foreground: 38 42% 96%;
 
-    --muted: 40 30% 96%;
-    --muted-foreground: 40 10% 45%;
+    --muted: 36 24% 93%;
+    --muted-foreground: 28 10% 42%;
 
-    --accent: 38 100% 97%;
-    --accent-foreground: 38 92% 50%;
+    --accent: 38 44% 94%;
+    --accent-foreground: 28 45% 22%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 20% 88%;
-    --input: 40 20% 88%;
-    --ring: 38 92% 50%;
+    /* Hairline borders — barely-there separation for a clean, uncluttered feel */
+    --border: 32 18% 89%;
+    --input: 32 18% 89%;
+    --ring: 35 78% 45%;
 
-    --radius: 0.75rem;
+    /* Tighter radii read more refined than the previous 1rem everywhere */
+    --radius: 0.625rem;
 
-    --gradient-gold: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(45 95% 60%) 100%);
-    --gradient-gold-subtle: linear-gradient(180deg, hsl(38 100% 97%) 0%, hsl(0 0% 100%) 100%);
-    --gradient-shine: linear-gradient(90deg, transparent 0%, hsl(45 100% 75% / 0.3) 50%, transparent 100%);
-    --shadow-gold: 0 4px 20px -2px hsl(38 92% 50% / 0.25);
-    --shadow-gold-lg: 0 10px 40px -5px hsl(38 92% 50% / 0.35);
-    --shadow-soft: 0 2px 8px -1px hsl(40 10% 20% / 0.08);
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Type system */
+    --font-display: "Fraunces", ui-serif, Georgia, serif;
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+    --gradient-gold: linear-gradient(135deg, hsl(35 78% 45%) 0%, hsl(42 88% 56%) 100%);
+    --gradient-gold-subtle: linear-gradient(180deg, hsl(38 44% 94%) 0%, hsl(38 36% 97%) 100%);
+    --gradient-shine: linear-gradient(90deg, transparent 0%, hsl(46 100% 80% / 0.30) 50%, transparent 100%);
+
+    /* Layered, low-spread shadows — depth without heaviness */
+    --shadow-gold: 0 4px 24px -6px hsl(35 78% 45% / 0.20);
+    --shadow-gold-lg: 0 20px 50px -12px hsl(35 78% 45% / 0.28);
+    --shadow-soft: 0 1px 2px hsl(25 22% 12% / 0.04), 0 8px 24px -10px hsl(25 22% 12% / 0.10);
+    --shadow-lift: 0 2px 4px hsl(25 22% 12% / 0.04), 0 18px 40px -14px hsl(25 22% 12% / 0.18);
+
+    /* Weighted, intentional easing — used across interactive transitions */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
@@ -60,26 +75,26 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 40 10% 12%;
+    --background: 28 16% 10%;
     --foreground: 40 30% 95%;
 
-    --card: 40 10% 15%;
+    --card: 28 14% 13%;
     --card-foreground: 40 30% 95%;
 
-    --popover: 40 10% 15%;
+    --popover: 28 14% 13%;
     --popover-foreground: 40 30% 95%;
 
-    --primary: 38 92% 50%;
-    --primary-foreground: 40 10% 12%;
+    --primary: 40 90% 56%;
+    --primary-foreground: 28 25% 10%;
 
-    --secondary: 40 95% 55%;
-    --secondary-foreground: 40 10% 12%;
+    --secondary: 40 40% 96%;
+    --secondary-foreground: 28 30% 14%;
 
-    --muted: 40 10% 20%;
-    --muted-foreground: 40 20% 65%;
+    --muted: 28 12% 18%;
+    --muted-foreground: 40 20% 68%;
 
-    --accent: 40 15% 20%;
-    --accent-foreground: 38 92% 50%;
+    --accent: 28 14% 20%;
+    --accent-foreground: 40 90% 56%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 40 30% 95%;
@@ -109,10 +124,75 @@ All colors MUST be HSL.
     /* @apply bg-background text-foreground; */
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-family: var(--font-sans);
     font-feature-settings: "kern", "liga", "clig", "calt";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  /* Body copy reads calmer with a touch of negative tracking and generous leading */
+  p {
+    text-wrap: pretty;
   }
 
   html {
     scroll-behavior: smooth;
+    /* Keep anchored targets clear of the fixed nav */
+    scroll-padding-top: 6rem;
+  }
+}
+
+@layer components {
+  /* Eyebrow label — the small uppercase kicker above section titles */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary;
+  }
+
+  /* A thin, centered gold rule used as a quiet divider */
+  .rule-gold {
+    @apply h-px w-12 bg-primary/60;
+  }
+}
+
+@layer utilities {
+  /* Scroll-reveal: elements start lowered + transparent, then settle into place.
+     A small JS observer (useReveal) toggles [data-revealed="true"]. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    will-change: opacity, transform;
+  }
+  .reveal[data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Respect users who prefer reduced motion (WCAG 2.3.3) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

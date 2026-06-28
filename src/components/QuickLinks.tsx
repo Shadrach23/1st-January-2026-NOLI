@@ -1,60 +1,70 @@
-import { Calendar, Clock, HandHeart, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Calendar, Clock, HandHeart, Phone, ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Section from "@/components/Section";
+import Reveal from "@/components/Reveal";
 
+const links = [
+  {
+    icon: Calendar,
+    title: "Plan Your Visit",
+    description: "Service times & location",
+    cta: "View services",
+    href: "/services",
+  },
+  {
+    icon: Clock,
+    title: "Upcoming Events",
+    description: "Join our community gatherings",
+    cta: "See events",
+    href: "/events",
+  },
+  {
+    icon: HandHeart,
+    title: "Give Online",
+    description: "Partner with God's work",
+    cta: "Give now",
+    href: "/give",
+  },
+  {
+    icon: Phone,
+    title: "Get in Touch",
+    description: "We'd love to hear from you",
+    cta: "Contact us",
+    href: "/contact",
+  },
+];
+
+// Espresso band: gold lives only in the icons and the hover accent — a quiet,
+// premium contrast against the lighter sections above and below it.
 const QuickLinks = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="py-20 bg-gradient-gold">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-background/95 backdrop-blur-sm p-8 rounded-2xl shadow-gold hover:shadow-gold-lg transition-all duration-300 hover:scale-105 text-center">
-            <Calendar className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-foreground mb-2">Plan Your Visit</h3>
-            <p className="text-muted-foreground mb-4 text-sm">
-              Service Times & Location
-            </p>
-            <Button variant="outline" onClick={() => navigate("/services")} className="w-full">
-              View Services
-            </Button>
-          </div>
-
-          <div className="bg-background/95 backdrop-blur-sm p-8 rounded-2xl shadow-gold hover:shadow-gold-lg transition-all duration-300 hover:scale-105 text-center">
-            <Clock className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-foreground mb-2">Upcoming Events</h3>
-            <p className="text-muted-foreground mb-4 text-sm">
-              Join our community activities
-            </p>
-            <Button variant="outline" onClick={() => navigate("/events")} className="w-full">
-              See Events
-            </Button>
-          </div>
-
-          <div className="bg-background/95 backdrop-blur-sm p-8 rounded-2xl shadow-gold hover:shadow-gold-lg transition-all duration-300 hover:scale-105 text-center">
-            <HandHeart className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-foreground mb-2">Give Online</h3>
-            <p className="text-muted-foreground mb-4 text-sm">
-              Support God's work
-            </p>
-            <Button variant="outline" onClick={() => navigate("/give")} className="w-full">
-              Give Now
-            </Button>
-          </div>
-
-          <div className="bg-background/95 backdrop-blur-sm p-8 rounded-2xl shadow-gold hover:shadow-gold-lg transition-all duration-300 hover:scale-105 text-center">
-            <Phone className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-foreground mb-2">Get In Touch</h3>
-            <p className="text-muted-foreground mb-4 text-sm">
-              We'd love to hear from you
-            </p>
-            <Button variant="outline" onClick={() => navigate("/contact")} className="w-full">
-              Contact Us
-            </Button>
-          </div>
-        </div>
+    <Section tone="ink" space="sm">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {links.map((link, index) => (
+          <Reveal key={link.title} delay={index * 90}>
+            <button
+              type="button"
+              onClick={() => navigate(link.href)}
+              className="group flex h-full w-full flex-col items-start rounded-2xl border border-secondary-foreground/10 bg-secondary-foreground/[0.03] p-7 text-left transition-all duration-500 ease-out-expo hover:-translate-y-1 hover:border-primary/40 hover:bg-secondary-foreground/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <link.icon className="h-9 w-9 text-primary" aria-hidden="true" />
+              <h3 className="mt-5 font-display text-lg font-semibold text-secondary-foreground">
+                {link.title}
+              </h3>
+              <p className="mt-1.5 flex-grow text-sm text-secondary-foreground/60">
+                {link.description}
+              </p>
+              <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                {link.cta}
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
+            </button>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 };
 

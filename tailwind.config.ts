@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ["Fraunces", "ui-serif", "Georgia", "serif"],
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -65,11 +69,15 @@ export default {
       },
       boxShadow: {
         'soft': 'var(--shadow-soft)',
+        'lift': 'var(--shadow-lift)',
         'gold': 'var(--shadow-gold)',
         'gold-lg': 'var(--shadow-gold-lg)',
+        /* Alias kept so legacy `shadow-glow` usages resolve to a real shadow */
+        'glow': 'var(--shadow-gold-lg)',
       },
       transitionTimingFunction: {
         'bounce-in': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+        'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
       borderRadius: {
         lg: "var(--radius)",

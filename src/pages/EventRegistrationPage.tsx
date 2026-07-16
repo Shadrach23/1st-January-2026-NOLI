@@ -51,7 +51,7 @@ const EventRegistrationPage = () => {
   
   // Get event data from URL params
   const [event] = useState<EventData>({
-    title: searchParams.get('event') || "CROSS OVER 2025 with Pastor Desmond",
+    title: searchParams.get('event') || "CROSS OVER 2025 with Pastore Desmond",
     date: searchParams.get('date') || "31st December, 2025",
     time: searchParams.get('time') || "9:00 PM till dawn",
     location: searchParams.get('location') || "Newness Cathedral, Tarkwa",

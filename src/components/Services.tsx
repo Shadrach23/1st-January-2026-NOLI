@@ -39,7 +39,7 @@ const Services = () => {
             <Card className="bg-gradient-to-br from-primary/10 to-accent/20 border-2 border-primary/20">
               <CardContent className="p-8">
                 <div className="text-center mb-4">
-                  <h4 className="text-2xl font-bold text-primary mb-2">CROSS OVER WITH PASTOR DESMOND</h4>
+                  <h4 className="text-2xl font-bold text-primary mb-2">CROSS OVER WITH PASTORE DESMOND</h4>
                   <p className="text-xl font-semibold text-secondary mb-2">31ST DECEMBER, 2025</p>
                   <p className="text-lg font-medium text-accent mb-4">7PM</p>
                 </div>

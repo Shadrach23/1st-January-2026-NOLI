@@ -7,27 +7,36 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
+import img8793 from "@/assets/IMG_8793.jpg";
+import img8843 from "@/assets/IMG_8843.jpg";
+import img8897 from "@/assets/IMG_8897.jpg";
+import img8898 from "@/assets/IMG_8898.jpg";
+import img8915 from "@/assets/IMG_8915.jpg";
+import img8941 from "@/assets/IMG_8941.jpg";
+import img8958 from "@/assets/IMG_8958.jpg";
+import communityImg from "@/assets/community.jpg";
+import churchHero from "@/assets/church-hero.jpg";
 
 const GalleryPage = () => {
   const galleries = [
     {
       title: "Sunday Worship Services",
-      images: ["/src/assets/IMG_8793.jpg", "/src/assets/IMG_8843.jpg", "/src/assets/IMG_8897.jpg", "/src/assets/IMG_8898.jpg", "/src/assets/church-hero.jpg"],
+      images: [img8793, img8843, img8897, img8898, churchHero],
       description: "Moments from our vibrant worship services",
     },
     {
       title: "Community Outreach",
-      images: ["/src/assets/IMG_8915.jpg", "/src/assets/IMG_8941.jpg", "/src/assets/IMG_8958.jpg", "/src/assets/community.jpg", "/src/assets/IMG_8793.jpg"],
+      images: [img8915, img8941, img8958, communityImg, img8793],
       description: "Serving our community with love",
     },
     {
       title: "Youth Ministry",
-      images: ["/src/assets/IMG_8843.jpg", "/src/assets/IMG_8898.jpg", "/src/assets/IMG_8915.jpg", "/src/assets/IMG_8941.jpg", "/src/assets/church-hero.jpg"],
+      images: [img8843, img8898, img8915, img8941, churchHero],
       description: "Empowering the next generation",
     },
     {
       title: "Special Events",
-      images: ["/src/assets/IMG_8897.jpg", "/src/assets/IMG_8898.jpg", "/src/assets/IMG_8958.jpg", "/src/assets/IMG_8915.jpg", "/src/assets/community.jpg"],
+      images: [img8897, img8898, img8958, img8915, communityImg],
       description: "Celebrating special moments and milestones",
     },
   ];

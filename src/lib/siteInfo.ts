@@ -45,7 +45,7 @@ export const churchInfo = {
   videos: [
     {
       id: "_FN6_HCH9AI",
-      title: "CROSS OVER 2025 with Pastor Desmond",
+      title: "CROSS OVER 2025 with Pastore Desmond",
       description: "Prophetic watch-night encounter ushering the church into 2025",
       thumbnail: "https://img.youtube.com/vi/_FN6_HCH9AI/maxresdefault.jpg"
     },
@@ -57,7 +57,7 @@ export const churchInfo = {
     }
   ],
   upcomingEvent: {
-    title: "CROSS OVER WITH PASTOR DESMOND",
+    title: "CROSS OVER WITH PASTORE DESMOND",
     description: "Join us for the CROSS OVER service as we welcome 2026 in God's presence.",
     venue: "Grace Mountain Temple",
     date: "31st December, 2025 - 7:00 PM",

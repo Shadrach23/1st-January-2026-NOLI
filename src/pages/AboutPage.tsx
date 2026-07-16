@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { churchInfo } from "@/lib/siteInfo";
 import ImageGallery from "@/components/ImageGallery";
+import whoWeAreImage from "@/assets/who we are image .jpg";
 
 const AboutPage = () => {
   const values = [
@@ -72,7 +73,7 @@ const AboutPage = () => {
             </div>
             <div className="animate-in fade-in slide-in-from-right duration-1000">
               <img
-                src="/src/assets/who we are image .jpg"
+                src={whoWeAreImage}
                 alt="Who We Are"
                 className="rounded-2xl shadow-gold-lg w-full h-auto"
               />
@@ -146,7 +147,7 @@ const AboutPage = () => {
           <Card className="max-w-4xl mx-auto hover:shadow-glow transition-all duration-300">
             <CardContent className="p-12 text-center">
               <h3 className="text-3xl font-bold text-primary mb-4">CROSS OVER 2025</h3>
-              <p className="text-xl text-muted-foreground mb-6">with Pastor Desmond</p>
+              <p className="text-xl text-muted-foreground mb-6">with Pastore Desmond</p>
               <p className="text-lg text-muted-foreground mb-8">
                 Join us for a prophetic watch-night encounter ushering the church into 2025
               </p>
@@ -173,9 +174,9 @@ const AboutPage = () => {
             <Card className="hover:shadow-glow transition-all duration-300">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 bg-gradient-gold rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-4xl text-primary-foreground font-bold">PA</span>
+                  <span className="text-4xl text-primary-foreground font-bold">PD</span>
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-1">Pastor Akwasi Boateng</h3>
+                <h3 className="text-xl font-bold text-primary mb-1">Pastore Desmond</h3>
                 <p className="text-sm text-secondary mb-3">Senior Pastor</p>
                 <p className="text-muted-foreground text-sm">
                   Leading with wisdom and compassion for over 20 years

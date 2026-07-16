@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import img8793 from "@/assets/IMG_8793.jpg";
+import img8843 from "@/assets/IMG_8843.jpg";
+import img8897 from "@/assets/IMG_8897.jpg";
+import img8898 from "@/assets/IMG_8898.jpg";
+import img8915 from "@/assets/IMG_8915.jpg";
+import img8941 from "@/assets/IMG_8941.jpg";
+import img8958 from "@/assets/IMG_8958.jpg";
+import communityImg from "@/assets/community.jpg";
+import churchHero from "@/assets/church-hero.jpg";
 
 interface ImageGalleryProps {
   className?: string;
@@ -11,15 +20,15 @@ const ImageGallery = ({ className = "" }: ImageGalleryProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const allImages = [
-    { src: "/src/assets/IMG_8793.jpg", alt: "Church Service Moment 1" },
-    { src: "/src/assets/IMG_8843.jpg", alt: "Church Service Moment 2" },
-    { src: "/src/assets/IMG_8897.jpg", alt: "Church Service Moment 3" },
-    { src: "/src/assets/IMG_8898.jpg", alt: "Church Service Moment 4" },
-    { src: "/src/assets/IMG_8915.jpg", alt: "Community Outreach 1" },
-    { src: "/src/assets/IMG_8941.jpg", alt: "Community Outreach 2" },
-    { src: "/src/assets/IMG_8958.jpg", alt: "Community Outreach 3" },
-    { src: "/src/assets/community.jpg", alt: "Community Fellowship" },
-    { src: "/src/assets/church-hero.jpg", alt: "Church Building" },
+    { src: img8793, alt: "Church Service Moment 1" },
+    { src: img8843, alt: "Church Service Moment 2" },
+    { src: img8897, alt: "Church Service Moment 3" },
+    { src: img8898, alt: "Church Service Moment 4" },
+    { src: img8915, alt: "Community Outreach 1" },
+    { src: img8941, alt: "Community Outreach 2" },
+    { src: img8958, alt: "Community Outreach 3" },
+    { src: communityImg, alt: "Community Fellowship" },
+    { src: churchHero, alt: "Church Building" },
   ];
 
   const openLightbox = (imageSrc: string) => {
@@ -33,16 +42,16 @@ const ImageGallery = ({ className = "" }: ImageGalleryProps) => {
   };
 
   const navigateImage = (direction: 'prev' | 'next') => {
-    if (direction === 'prev') {
-      setCurrentImageIndex((prev) => 
-        prev === 0 ? allImages.length - 1 : prev - 1
-      );
-    } else {
-      setCurrentImageIndex((prev) => 
-        prev === allImages.length - 1 ? 0 : prev + 1
-      );
-    }
-    setSelectedImage(allImages[currentImageIndex].src);
+    const nextIndex =
+      direction === 'prev'
+        ? currentImageIndex === 0
+          ? allImages.length - 1
+          : currentImageIndex - 1
+        : currentImageIndex === allImages.length - 1
+          ? 0
+          : currentImageIndex + 1;
+    setCurrentImageIndex(nextIndex);
+    setSelectedImage(allImages[nextIndex].src);
   };
 
   return (

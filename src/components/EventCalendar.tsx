@@ -38,7 +38,7 @@ const EventCalendar = () => {
     },
     {
       id: "cross-over-2025",
-      title: "CROSS OVER 2025 with Pastor Desmond",
+      title: "CROSS OVER 2025 with Pastore Desmond",
       date: "2025-12-31",
       time: "9:00 PM - 12:30 AM",
       location: "Newness Cathedral, Tarkwa",
